@@ -1355,13 +1355,6 @@ export const DeveloperDashboard = (): JSX.Element => {
         <CardContent className="p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">OAuth Clients</h3>
           <div className="space-y-4">
-            {oauthClients.map((client) => (
-              <div key={client.id} className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{client.name}</h4>
-                    <p className="text-sm text-gray-600">Created: {client.created} • Last used: {client.lastUsed}</p>
-                  </div>
                   <Badge className={client.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
                     {client.status}
                   </Badge>
