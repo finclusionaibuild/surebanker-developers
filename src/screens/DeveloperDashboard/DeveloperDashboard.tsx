@@ -2040,26 +2040,6 @@ data = response.json()`
             </div>
           </nav>
 
-          <div className="p-4 border-t border-gray-700">
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center">
-                    <CodeIcon className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">Developer Mode</p>
-                    <p className="text-xs text-gray-400">Advanced Features</p>
-                  </div>
-                </div>
-                <Button className="w-full bg-indigo-600 text-white hover:bg-indigo-700">
-                  View API Status
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
         {/* Main Content */}
         <div className="flex-1 flex flex-col ml-64">
           <header className="bg-white border-b border-gray-200 px-6 py-4">
