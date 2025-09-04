@@ -66,7 +66,7 @@ export const TestimonialSection = (): JSX.Element => {
             Sign up today and experience the future of banking
           </p>
           <Button className="bg-[#4340ff] text-white px-8 lg:px-10 py-4 lg:py-5 text-base lg:text-lg font-semibold rounded-xl hover:bg-[#3632e6] transition-colors h-12 lg:h-[51px] w-full sm:w-auto" asChild>
-            <Link to="/signup">
+            <Link to="/demo">
               Get Started
             </Link>
           </Button>

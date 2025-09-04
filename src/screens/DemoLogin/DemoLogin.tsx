@@ -19,7 +19,58 @@ export const DemoLogin = (): JSX.Element => {
   const navigate = useNavigate();
 
   const demoAccounts = [
-    
+    {
+      id: "customer",
+      name: "Carchy Atinse",
+      email: "carchy.atinse@email.com",
+      role: "Individual Customer",
+      description: "Personal banking experience with savings, transfers, and bill payments",
+      icon: <UserIcon className="w-6 h-6" />,
+      bgColor: "bg-blue-100",
+      iconColor: "text-blue-600",
+      badgeColor: "bg-blue-500",
+      route: "/dashboard",
+      features: ["Personal Banking", "Money Transfers", "Bill Payments", "Savings Goals", "Transaction History"]
+    },
+    {
+      id: "business",
+      name: "Atinse Enterprises",
+      email: "business@atinse.com",
+      role: "Business Account",
+      description: "Comprehensive business banking with payroll, vendor management, and advanced reporting",
+      icon: <BuildingIcon className="w-6 h-6" />,
+      bgColor: "bg-green-100",
+      iconColor: "text-green-600",
+      badgeColor: "bg-green-500",
+      route: "/dashboard",
+      features: ["Business Banking", "Payroll Management", "Vendor Payments", "Multi-user Access", "Business Reports"]
+    },
+    {
+      id: "admin",
+      name: "John Admin",
+      email: "john.admin@surebanker.com",
+      role: "System Administrator",
+      description: "Full system administration capabilities with user management and system oversight",
+      icon: <ShieldIcon className="w-6 h-6" />,
+      bgColor: "bg-red-100",
+      iconColor: "text-red-600",
+      badgeColor: "bg-red-500",
+      route: "/admin",
+      features: ["User Management", "System Settings", "Audit Logs", "Reports & Analytics", "Security Management"]
+    },
+    {
+      id: "support",
+      name: "Mike Support",
+      email: "mike.support@surebanker.com",
+      role: "Customer Support",
+      description: "Customer service tools for ticket management and customer assistance",
+      icon: <HeadphonesIcon className="w-6 h-6" />,
+      bgColor: "bg-orange-100",
+      iconColor: "text-orange-600",
+      badgeColor: "bg-orange-500",
+      route: "/support",
+      features: ["Ticket Management", "Customer Assistance", "Live Chat Support", "Knowledge Base", "Performance Tracking"]
+    },
     {
       id: "developer",
       name: "Alex Developer",
@@ -49,7 +100,7 @@ export const DemoLogin = (): JSX.Element => {
     
     if (account.id === 'business') {
       localStorage.setItem('accountType', 'business');
-      targetRoute = '/business-dashboard';
+      targetRoute = '/dashboard';
     } else if (account.id === 'customer') {
       localStorage.setItem('accountType', 'individual');
       targetRoute = '/dashboard';
@@ -67,10 +118,9 @@ export const DemoLogin = (): JSX.Element => {
       navigate(targetRoute);
     }, 50);
   };
-  handleDemoLogin(demoAccounts[0]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f8f9ff] to-[#e8e6ff] flex items-center opacity-0 justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#f8f9ff] to-[#e8e6ff] flex items-center justify-center p-4">
       <div className="w-full max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -92,7 +142,7 @@ export const DemoLogin = (): JSX.Element => {
         </div>
 
         {/* Demo Accounts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
           {demoAccounts.map((account) => (
             <Card 
               key={account.id} 

@@ -62,7 +62,7 @@ export const LandingPageDesktop = (): JSX.Element => {
                   </Button>
 
                   <Button className="h-[51px] px-6 py-4 bg-[#e9e8ff] rounded-xl hover:bg-[#d9d8ff]" asChild>
-                    <Link to="/signup">
+                    <Link to="/individual-onboarding">
                       <span className="font-semibold text-[#4340ff] text-sm mr-2">
                         Sign Up
                       </span>
@@ -99,9 +99,9 @@ export const LandingPageDesktop = (): JSX.Element => {
                     </Button>
 
                     <Button className="h-[51px] px-6 py-4 bg-[#e9e8ff] rounded-xl hover:bg-[#d9d8ff]" asChild>
-                      <Link to="/individual-onboarding">
+                      <Link to="/demo">
                         <span className="font-semibold text-[#4340ff] text-sm mr-2">
-                          Sign Up
+                          Try Demo
                         </span>
                         <ArrowRightIcon className="w-4 h-4 text-[#4340ff]" />
                       </Link>
@@ -155,7 +155,7 @@ export const LandingPageDesktop = (): JSX.Element => {
                     </Link>
                   </Button>
                   <Button className="w-full bg-[#4340ff] text-white hover:bg-[#3632e6]" asChild>
-                    <Link to="/individual-onboarding" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Link to="/demo" onClick={() => setIsMobileMenuOpen(false)}>
                       <span className="font-semibold mr-2">Sign Up</span>
                       <ArrowRightIcon className="w-4 h-4" />
                     </Link>

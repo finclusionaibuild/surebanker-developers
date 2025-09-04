@@ -145,7 +145,7 @@ export const SmarterBankingSection = (): JSX.Element => {
             </div>
 
             <Button className="bg-[#4340ff] text-white px-6 lg:px-8 py-3 lg:py-4 text-sm lg:text-base font-semibold rounded-xl hover:bg-[#3632e6] transition-colors flex items-center gap-2 h-12 lg:h-[51px] w-full lg:w-auto" asChild>
-              <Link to="/signup">
+              <Link to="/demo">
                 {currentContent.buttonText}
                 <ArrowRightIcon className="w-4 h-4" />
               </Link>
