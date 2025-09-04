@@ -33,7 +33,6 @@ import {
 export const Transactions = (): JSX.Element => {
   const { currentAccount, isBusinessAccount } = useAccount();
   const { transactions } = useAccountTransactions();
-  const { navigationItems } = useAccountNavigation();
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [dateRange, setDateRange] = useState("30days");
   const navigate = useNavigate();

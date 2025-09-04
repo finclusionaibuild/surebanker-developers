@@ -468,14 +468,14 @@ export const AdminProfile = (): JSX.Element => {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <BadgeIcon className="w-5 h-5 text-[#64748B]" />
+                <UserIcon className="w-5 h-5 text-[#64748B]" />
                 <div>
                   <p className="text-sm text-[#64748B]">Employee ID</p>
                   <p className="font-medium text-[#1E293B]">{adminInfo.employeeId}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <BuildingIcon className="w-5 h-5 text-[#64748B]" />
+                <HomeIcon className="w-5 h-5 text-[#64748B]" />
                 <div>
                   <p className="text-sm text-[#64748B]">Department</p>
                   <p className="font-medium text-[#1E293B]">{adminInfo.department}</p>
