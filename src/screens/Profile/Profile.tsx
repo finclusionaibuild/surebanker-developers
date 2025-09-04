@@ -1168,6 +1168,7 @@ export const Profile = (): JSX.Element => {
             {renderCurrentView()}
           </main>
         </div>
+      </div>
 
       {/* Mobile Layout - STANDARDIZED */}
       <div className="lg:hidden">
