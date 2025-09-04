@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "../../contexts/AccountContext";
-import { useAccountBalance, useAccountNavigation } from "../../hooks/useAccountData";
+import { useAccountNavigation } from "../../hooks/useAccountData";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
@@ -11,7 +11,6 @@ import { BellIcon, SearchIcon, ArrowLeftIcon, PlusIcon, ArrowRightIcon, ChevronD
 
 export const Payments = (): JSX.Element => {
   const { currentAccount, isBusinessAccount } = useAccount();
-  const { balanceInfo } = useAccountBalance();
   const [kycLevel, setKycLevel] = useState(2); // Get from account context
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [amount, setAmount] = useState("");
@@ -355,7 +354,7 @@ export const Payments = (): JSX.Element => {
                 <Card className="mt-6 card-no-shadow">
                   <CardContent className="p-6">
                     <h4 className="text-sm font-medium text-[#64748B] mb-2">Available Balance</h4>
-                    <p className="text-2xl font-bold text-[#1E293B]">₦{balanceInfo?.mainBalance.toLocaleString() || '0'}.00</p>
+                    <p className="text-2xl font-bold text-[#1E293B]">₦120,000.00</p>
                     <Button 
                       variant="outline" 
                       size="sm" 
@@ -408,7 +407,7 @@ export const Payments = (): JSX.Element => {
           <Card className="bg-gradient-to-r from-[#5B52FF] to-[#7C3AED] text-white mb-6 card-no-shadow">
             <CardContent className="p-4">
               <p className="text-sm opacity-80 mb-1">Available Balance</p>
-              <p className="text-2xl font-bold">₦{balanceInfo?.mainBalance.toLocaleString() || '0'}.00</p>
+              <p className="text-2xl font-bold">₦120,000.00</p>
             </CardContent>
           </Card>
 
