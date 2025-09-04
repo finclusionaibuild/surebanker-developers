@@ -382,24 +382,22 @@ export const Cards = (): JSX.Element => {
                     </div>
                     {getCardTypeIcon(card.cardType)}
                   </div>
-                      {kycLevel === 0 ? 'Start with Tier 1 verification, then upgrade to Tier 2 for card access' :
-                       kycLevel === 1 ? 'Complete Tier 2 verification to unlock card requests and higher limits' :
-                       formatCardNumber(card.cardNumber, showCardNumber[card.id])}
+                  
                   <div>
                     <p className="text-xl font-mono tracking-wider mb-2">
                       {kycLevel === 0 ? 'Start with Tier 1 verification, then upgrade to Tier 2 for card access' :
-                       'Complete Tier 2 verification to unlock card requests and higher limits'}
+                       kycLevel === 1 ? 'Complete Tier 2 verification to unlock card requests and higher limits' :
+                       formatCardNumber(card.cardNumber, showCardNumber[card.id])}
                     </p>
                     <div className="flex justify-between items-end">
                       <div>
-                        <p className="text-white/80 text-xs">
-                          Card Holder
-                        </p>
+                        <p className="text-white/80 text-xs">Card Holder</p>
                         <p className="text-sm font-medium">{card.cardHolder}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-white/80 text-xs">Expires</p>
-                          Expires
+                        <p className="text-sm font-medium">{card.expiryDate}</p>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
