@@ -2039,6 +2039,7 @@ data = response.json()`
               ))}
             </div>
           </nav>
+        </div>
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col ml-64">
@@ -2049,6 +2050,15 @@ data = response.json()`
                 <p className="text-sm text-gray-600">Build and test your fintech integrations</p>
               </div>
 
+              <div className="flex items-center gap-4">
+                <AccountTypeSwitcher variant="header" />
+                
+                <Button variant="ghost" size="sm" className="p-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span className="text-sm text-gray-600">All Systems Operational</span>
+                  </div>
+                </Button>
                 
                 <div className="flex items-center gap-3">
                   <div className="text-right">
