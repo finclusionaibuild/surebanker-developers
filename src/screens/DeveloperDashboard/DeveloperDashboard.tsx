@@ -142,7 +142,7 @@ export const DeveloperDashboard = (): JSX.Element => {
     {
       id: '1',
       name: 'Main API Key',
-      key: 'sk_test_4e•••••7dc',
+      key: 'sk_test_4eC39HqLyjWDarjtT1zdp7dc',
       environment: 'sandbox',
       permissions: ['read', 'write', 'admin'],
       created: '2024-01-15',
@@ -153,7 +153,7 @@ export const DeveloperDashboard = (): JSX.Element => {
     {
       id: '2',
       name: 'Production Key',
-      key: 'sk_live_51•••••C39',
+      key: 'sk_live_51HqLyjWDarjtT1zdp7dc4eC39',
       environment: 'production',
       permissions: ['read', 'write'],
       created: '2024-01-10',
@@ -1355,13 +1355,6 @@ export const DeveloperDashboard = (): JSX.Element => {
         <CardContent className="p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">OAuth Clients</h3>
           <div className="space-y-4">
-            {oauthClients.map((client) => (
-              <div key={client.id} className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{client.name}</h4>
-                    <p className="text-sm text-gray-600">Created: {client.created} • Last used: {client.lastUsed}</p>
-                  </div>
                   <Badge className={client.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
                     {client.status}
                   </Badge>
@@ -1767,10 +1760,7 @@ data = response.json()`
                   <div key={i} className="flex flex-col items-center">
                     <div 
                       className="w-3 bg-indigo-500 rounded-t"
-                      style={{ 
-                        height: `${Math.random() * 80 + 20}%`,
-                        minHeight: '20px'
-                      }}
+                      style={{ height: `${Math.random() * 80 + 20}%` }}
                     ></div>
                     <span className="text-xs text-gray-600 mt-1">{i}</span>
                   </div>
@@ -1927,7 +1917,7 @@ data = response.json()`
                     }`}>
                       {log.level}
                     </Badge>
-                    <span className="text-sm text-gray-600">{log.statusCode}</span>
+                    <Badge className="bg-gray-100 text-gray-800">{log.statusCode}</Badge>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-600">{log.timestamp}</span>
@@ -1950,17 +1940,18 @@ data = response.json()`
                   <summary className="cursor-pointer text-gray-600 hover:text-gray-900">
                     View Stack Trace
                   </summary>
-                  <pre className="mt-2 bg-gray-100 p-3 rounded text-xs overflow-x-auto">
-                    {log.stackTrace}
-                  </pre>
+                  <div className="mt-2 bg-gray-900 text-green-400 p-3 rounded font-mono text-xs overflow-x-auto">
+                    <pre>{log.stackTrace}</pre>
+                  </div>
                 </details>
 
-                <div className="flex gap-2 mt-3">
+                <div className="flex items-center gap-2 mt-3">
                   {log.tags.map(tag => (
-                    <Badge key={tag} className="bg-gray-100 text-gray-800 text-xs">
-                      {tag}
-                    </Badge>
+                    <Badge key={tag} className="bg-gray-100 text-gray-800 text-xs">{tag}</Badge>
                   ))}
+                  {log.resolved && (
+                    <Badge className="bg-green-100 text-green-800 text-xs">Resolved</Badge>
+                  )}
                 </div>
               </div>
             ))}
@@ -1992,159 +1983,92 @@ data = response.json()`
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Desktop Layout */}
       <div className="hidden lg:flex">
         {/* Developer Sidebar */}
-        <div className="w-64 bg-white border-r border-gray-200 flex flex-col h-screen fixed left-0 top-0">
-          <div className="p-6 border-b border-gray-200">
+        <div className="w-64 bg-gray-900 text-white flex flex-col h-screen fixed left-0 top-0">
+          <div className="p-6 border-b border-gray-700">
             <div className="flex items-center gap-3">
-              <img 
-                src="/Logo Main Trans.png" 
-                alt="SureBanker" 
-                className="h-8 w-auto object-contain"
-              />
-              <Badge className="bg-blue-100 text-blue-800 text-xs">DEVELOPER</Badge>
+              <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
+                <CodeIcon className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="font-bold">SureBanker</h2>
+                <p className="text-sm text-gray-400">Developer Portal</p>
+              </div>
             </div>
           </div>
 
           <nav className="flex-1 p-4 overflow-y-auto">
+            {/* Account Type Switcher */}
+            <div className="mb-4">
+              <AccountTypeSwitcher variant="sidebar" />
+            </div>
+
             <div className="space-y-1">
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                DEVELOPER TOOLS
-              </div>
               {[
-                { 
-                  name: "Overview", 
-                  icon: <HomeIcon className="w-5 h-5" />, 
-                  view: 'overview',
-                  onClick: () => setCurrentView('overview')
-                },
-                { 
-                  name: "API Management", 
-                  icon: <KeyIcon className="w-5 h-5" />,
-                  view: 'api-management',
-                  onClick: () => setCurrentView('api-management')
-                },
-                { 
-                  name: "Sandbox Environment", 
-                  icon: <PlayIcon className="w-5 h-5" />,
-                  view: 'sandbox',
-                  onClick: () => setCurrentView('sandbox')
-                },
-                { 
-                  name: "Webhook Testing", 
-                  icon: <WebhookIcon className="w-5 h-5" />,
-                  view: 'webhooks',
-                  onClick: () => setCurrentView('webhooks')
-                },
-                { 
-                  name: "OAuth Management", 
-                  icon: <ShieldIcon className="w-5 h-5" />,
-                  view: 'oauth',
-                  onClick: () => setCurrentView('oauth')
-                },
-                { 
-                  name: "Documentation", 
-                  icon: <BookOpenIcon className="w-5 h-5" />,
-                  view: 'documentation',
-                  onClick: () => setCurrentView('documentation')
-                },
-                { 
-                  name: "Rate Limiting", 
-                  icon: <ActivityIcon className="w-5 h-5" />,
-                  view: 'rate-limiting',
-                  onClick: () => setCurrentView('rate-limiting')
-                },
-                { 
-                  name: "Error Logs", 
-                  icon: <BugIcon className="w-5 h-5" />,
-                  view: 'error-logs',
-                  onClick: () => setCurrentView('error-logs')
-                }
-              ].map((item, index) => (
+                { id: 'overview', name: 'Overview', icon: <HomeIcon className="w-5 h-5" /> },
+                { id: 'api-management', name: 'API Management', icon: <KeyIcon className="w-5 h-5" /> },
+                { id: 'sandbox', name: 'Sandbox', icon: <PlayIcon className="w-5 h-5" /> },
+                { id: 'webhooks', name: 'Webhooks', icon: <WebhookIcon className="w-5 h-5" /> },
+                { id: 'oauth', name: 'OAuth', icon: <ShieldIcon className="w-5 h-5" /> },
+                { id: 'documentation', name: 'Documentation', icon: <BookOpenIcon className="w-5 h-5" /> },
+                { id: 'rate-limiting', name: 'Rate Limiting', icon: <ActivityIcon className="w-5 h-5" /> },
+                { id: 'error-logs', name: 'Error Logs', icon: <BugIcon className="w-5 h-5" /> }
+              ].map((item) => (
                 <div
-                  key={index}
-                  onClick={item.onClick}
-                  className={`px-4 py-3 rounded-xl flex items-center gap-3 cursor-pointer transition-all duration-200 ${
-                    currentView === item.view
-                      ? "bg-indigo-600 text-white shadow-lg"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-indigo-600"
+                  key={item.id}
+                  onClick={() => setCurrentView(item.id)}
+                  className={`px-3 py-2 rounded-lg flex items-center gap-3 cursor-pointer transition-colors ${
+                    currentView === item.id
+                      ? "bg-indigo-600 text-white"
+                      : "text-gray-300 hover:bg-gray-800 hover:text-white"
                   }`}
                 >
-                  <div className={`${currentView === item.view ? 'text-white' : ''}`}>
-                    {item.icon}
-                  </div>
+                  {item.icon}
                   <span className="font-medium">{item.name}</span>
                 </div>
               ))}
             </div>
           </nav>
-
-          <div className="p-4">
-            <Card className="bg-gradient-to-br from-indigo-600 via-blue-600 to-indigo-600 text-white overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full -mr-10 -mt-10"></div>
-              <CardContent className="p-4 relative">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
-                    <CodeIcon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Developer Portal</p>
-                    <p className="text-sm text-gray-300">API Access & Tools</p>
-                  </div>
-                </div>
-                <Button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white shadow-lg">
-                  Developer Resources
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col ml-64">
-          {/* Header */}
-          <header className="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-40">
+          <header className="bg-white border-b border-gray-200 px-6 py-4">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-                  <CodeIcon className="w-6 h-6 text-indigo-600" />
-                  Developer Dashboard
-                </h1>
-                <p className="text-sm text-gray-600">Build and test with SureBanker APIs</p>
+                <h1 className="text-xl font-semibold text-gray-900">Developer Dashboard</h1>
+                <p className="text-sm text-gray-600">Build and test your fintech integrations</p>
               </div>
 
               <div className="flex items-center gap-4">
-                <Button variant="ghost" size="sm" className="p-2 hover:bg-gray-100">
-                  <SearchIcon className="w-5 h-5 text-gray-600" />
+                <AccountTypeSwitcher variant="header" />
+                
+                <Button variant="ghost" size="sm" className="p-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span className="text-sm text-gray-600">All Systems Operational</span>
+                  </div>
                 </Button>
                 
-                <div className="relative">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="p-2 hover:bg-gray-100"
-                    onClick={() => navigate("/developer-dashboard")}
-                  >
-                    <BellIcon className="w-5 h-5 text-gray-600" />
-                  </Button>
-                  <Badge className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs flex items-center justify-center p-0 animate-pulse">
-                    7
-                  </Badge>
-                </div>
-
                 <div className="flex items-center gap-3">
-                  <Avatar className="w-8 h-8">
-                    <AvatarFallback className="bg-indigo-600 text-white">AD</AvatarFallback>
-                  </Avatar>
+                  <div className="text-right">
+                  </div>
+                  <ProfileDropdown
+                    userName="Alex Developer"
+                    userRole="Developer Account"
+                    avatar="AD"
+                    profileRoute="/developer-profile"
+                    accountType="developer"
+                  />
                 </div>
               </div>
             </div>
           </header>
 
-          {/* Developer Dashboard Content */}
-          <main className="flex-1 p-6 overflow-y-auto">
+          <main className="flex-1 p-6">
             {renderCurrentView()}
           </main>
         </div>
@@ -2152,50 +2076,44 @@ data = response.json()`
 
       {/* Mobile Layout */}
       <div className="lg:hidden">
-        {/* Mobile Header */}
-        <header className="bg-white px-4 py-4 flex items-center justify-between border-b">
+        <header className="bg-gray-900 text-white px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Avatar className="w-10 h-10">
-              <AvatarFallback className="bg-indigo-600 text-white">AD</AvatarFallback>
-            </Avatar>
+            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <CodeIcon className="w-4 h-4 text-white" />
+            </div>
             <div>
-              <h1 className="text-lg font-semibold text-gray-900">Developer</h1>
-              <p className="text-xs text-gray-600">API Development</p>
+              <h1 className="font-semibold">Developer Portal</h1>
+              <p className="text-xs text-gray-400">Build & Test</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <BellIcon className="w-6 h-6 text-gray-600" />
-              <Badge className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs flex items-center justify-center p-0">
-                7
-              </Badge>
-            </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="text-xs">Online</span>
           </div>
         </header>
 
-        {/* Mobile Content */}
         <main className="p-4 pb-20">
           {renderCurrentView()}
         </main>
 
         {/* Mobile Bottom Navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white px-4 py-2">
           <div className="flex items-center justify-around">
             {[
-              { name: "Overview", icon: <HomeIcon className="w-6 h-6" />, view: 'overview', onClick: () => setCurrentView('overview') },
-              { name: "API", icon: <KeyIcon className="w-6 h-6" />, view: 'api-management', onClick: () => setCurrentView('api-management') },
-              { name: "Test", icon: <PlayIcon className="w-6 h-6" />, view: 'sandbox', onClick: () => setCurrentView('sandbox') },
-              { name: "Docs", icon: <BookOpenIcon className="w-6 h-6" />, view: 'documentation', onClick: () => setCurrentView('documentation') }
-            ].map((item, index) => (
+              { id: 'overview', name: 'Overview', icon: <HomeIcon className="w-5 h-5" /> },
+              { id: 'api-management', name: 'APIs', icon: <KeyIcon className="w-5 h-5" /> },
+              { id: 'sandbox', name: 'Test', icon: <PlayIcon className="w-5 h-5" /> },
+              { id: 'documentation', name: 'Docs', icon: <BookOpenIcon className="w-5 h-5" /> }
+            ].map((item) => (
               <div 
-                key={index} 
+                key={item.id}
                 className="flex flex-col items-center py-2 cursor-pointer"
-                onClick={item.onClick}
+                onClick={() => setCurrentView(item.id)}
               >
-                <div className={`${currentView === item.view ? 'text-indigo-600' : 'text-gray-400'}`}>
+                <div className={`${currentView === item.id ? 'text-indigo-400' : 'text-gray-400'}`}>
                   {item.icon}
                 </div>
-                <span className={`text-xs mt-1 ${currentView === item.view ? 'text-indigo-600 font-medium' : 'text-gray-400'}`}>
+                <span className={`text-xs mt-1 ${currentView === item.id ? 'text-indigo-400 font-medium' : 'text-gray-400'}`}>
                   {item.name}
                 </span>
               </div>
