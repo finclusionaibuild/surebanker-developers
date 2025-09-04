@@ -5,56 +5,7 @@ import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Avatar, AvatarFallback } from "../../components/ui/avatar";
 import { Badge } from "../../components/ui/badge";
-import { 
-  BellIcon, 
-  SearchIcon, 
-  ArrowLeftIcon,
-  CodeIcon,
-  DatabaseIcon,
-  ServerIcon,
-  TerminalIcon,
-  GitBranchIcon,
-  ZapIcon,
-  CloudIcon,
-  LockIcon,
-  UnlockIcon,
-  RefreshCwIcon,
-  PlayIcon,
-  PauseIcon,
-  StopIcon,
-  MonitorIcon,
-  CpuIcon,
-  HardDriveIcon,
-  NetworkIcon,
-  ShieldCheckIcon,
-  AlertTriangleIcon,
-  CheckCircleIcon,
-  XCircleIcon,
-  ClockIcon,
-  TrendingUpIcon,
-  FileTextIcon,
-  BookOpenIcon,
-  MessageCircleIcon,
-  HeadphonesIcon,
-  HomeIcon,
-  UserIcon,
-  SettingsIcon,
-  ActivityIcon,
-  BarChart3Icon,
-  KeyIcon,
-  EyeIcon,
-  CopyIcon,
-  ExternalLinkIcon,
-  DownloadIcon,
-  UploadIcon,
-  FolderIcon,
-  FileIcon,
-  PlusIcon,
-  MinusIcon,
-  EditIcon,
-  TrashIcon,
-  MoreHorizontalIcon
-} from "lucide-react";
+import { BellIcon, SearchIcon, ArrowLeftIcon, CodeIcon, DatabaseIcon, ServerIcon, TerminalIcon, GitBranchIcon, ZapIcon, CloudIcon, LockIcon, UnlockIcon, RefreshCwIcon, PlayIcon, PauseIcon, HopIcon as StopIcon, MonitorIcon, CpuIcon, HardDriveIcon, NetworkIcon, ShieldCheckIcon, AlertTriangleIcon, CheckCircleIcon, XCircleIcon, ClockIcon, TrendingUpIcon, FileTextIcon, BookOpenIcon, MessageCircleIcon, HeadphonesIcon, HomeIcon, UserIcon, SettingsIcon, ActivityIcon, BarChart3Icon, KeyIcon, EyeIcon, CopyIcon, ExternalLinkIcon, DownloadIcon, UploadIcon, FolderIcon, FileIcon, PlusIcon, MinusIcon, EditIcon, TrashIcon, MoreHorizontalIcon } from "lucide-react";
 
 interface APIEndpoint {
   id: string;
