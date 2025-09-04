@@ -67,6 +67,7 @@ import {
 
 export const Profile = (): JSX.Element => {
   const { currentAccount, isBusinessAccount, updateAccountData } = useAccount();
+  const { navigationItems } = useAccountNavigation();
   const [currentView, setCurrentView] = useState("overview");
   const [isEditing, setIsEditing] = useState(false);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
