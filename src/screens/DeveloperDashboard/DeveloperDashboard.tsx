@@ -727,65 +727,6 @@ export const DeveloperDashboard = (): JSX.Element => {
                     <p className="text-sm text-gray-600">Created: {key.created} • Last used: {key.lastUsed}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className={client.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
-                      {client.status}
-                    </Badge>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-xs text-gray-600 mb-1">Client ID</label>
-                    <div className="flex items-center gap-2">
-                      <code className="bg-gray-100 px-2 py-1 rounded text-sm flex-1">{client.clientId}</code>
-                      <Button variant="outline" size="sm" onClick={() => copyToClipboard(client.clientId)}>
-                        <CopyIcon className="w-3 h-3" />
-                      </Button>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs text-gray-600 mb-1">Client Secret</label>
-                    <div className="flex items-center gap-2">
-                      <code className="bg-gray-100 px-2 py-1 rounded text-sm flex-1">
-                        {showClientSecret[client.id] ? client.clientSecret : '••••••••••••••••'}
-                      </code>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => toggleClientSecretVisibility(client.id)}
-                      >
-                        {showClientSecret[client.id] ? <EyeOffIcon className="w-3 h-3" /> : <EyeIcon className="w-3 h-3" />}
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => copyToClipboard(client.clientSecret)}>
-                        <CopyIcon className="w-3 h-3" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-3">
-                  <div>
-                    <p className="text-xs text-gray-600">Total Requests</p>
-                    <p className="font-semibold">{client.usage.totalRequests.toLocaleString()}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-600">Active Tokens</p>
-                    <p className="font-semibold">{client.usage.activeTokens}</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  <div>
-                    <p className="text-xs text-gray-600 mb-1">Scopes:</p>
-                    <div className="flex gap-1">
-                      {client.scopes.map(scope => (
-                        <Badge key={scope} className="bg-blue-100 text-blue-800 text-xs">{scope}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-                  <div className="flex items-center gap-2">
                     <Badge className={key.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
                       {key.status}
                     </Badge>
@@ -1414,6 +1355,13 @@ export const DeveloperDashboard = (): JSX.Element => {
         <CardContent className="p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">OAuth Clients</h3>
           <div className="space-y-4">
+            {oauthClients.map((client) => (
+              <div key={client.id} className="border border-gray-200 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h4 className="font-semibold text-gray-900">{client.name}</h4>
+                    <p className="text-sm text-gray-600">Created: {client.created} • Last used: {client.lastUsed}</p>
+                  </div>
                   <Badge className={client.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
                     {client.status}
                   </Badge>
@@ -2091,7 +2039,6 @@ data = response.json()`
               ))}
             </div>
           </nav>
-        </div>
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col ml-64">
@@ -2102,18 +2049,11 @@ data = response.json()`
                 <p className="text-sm text-gray-600">Build and test your fintech integrations</p>
               </div>
 
-              <div className="flex items-center gap-4">
-                <AccountTypeSwitcher variant="header" />
-                
-                <Button variant="ghost" size="sm" className="p-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm text-gray-600">All Systems Operational</span>
-                  </div>
-                </Button>
                 
                 <div className="flex items-center gap-3">
                   <div className="text-right">
+                    <div className="text-sm font-medium text-gray-900">Alex Developer</div>
+                    <div className="text-xs text-gray-600">Developer Account</div>
                   </div>
                   <ProfileDropdown
                     userName="Alex Developer"
